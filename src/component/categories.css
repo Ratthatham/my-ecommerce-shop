@@ -2,12 +2,13 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-between; 
+    
 }
 
 .category-container {
   min-width: 30%;
-  height: 240px;
+  height: 300px;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
@@ -18,10 +19,22 @@
   
 }
 
-.category-container:hover{
+.category-container:hover {
   cursor: pointer;
   
 }
+
+.category-container:hover .background-image {
+  transform: scale(1.1);
+  transition : transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+  
+}
+
+.category-container:hover .category-body-container {
+  opacity: 0.9;
+  
+}
+
 
 .category-body-container {
   height: 90px;
@@ -34,6 +47,9 @@
   background-color: white;
   opacity: 0.7;
   position: absolute;
+  border-radius: 15px;
+  border: none;
+  
 
 }
 
