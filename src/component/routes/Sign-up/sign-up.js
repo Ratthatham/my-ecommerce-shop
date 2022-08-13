@@ -2,6 +2,8 @@ import React from "react"
 import { useState } from "react";
 import { createAuthUserWithEmailAndPassword} from "../../../firebase/firebase";
 import FormInput from "../../formInput/forminput";
+import Button from "../../button/button";
+
 
 const defaultFormFields = {
     displayName: '',
@@ -52,8 +54,9 @@ const SignUpForm = () =>{
 
 
     return (
-        <div>
-            <h1>Sign up with your email and password</h1>
+        <div className="sign-up-container">
+            <h2>Don't have an account?</h2>
+            <span>Sign up with your email and password</span>
             <form onSubmit={handleSumbmit}>
                 <FormInput
                     label= 'Display Name'
@@ -61,7 +64,7 @@ const SignUpForm = () =>{
                     required
                     onChange = {handleChange}
                     name = 'displayName'
-                    value = 'displayName'
+                    value = {formFields.displayName}
                 />
 
                 <FormInput
@@ -70,7 +73,7 @@ const SignUpForm = () =>{
                     required
                     onChange = {handleChange}
                     name = 'email'
-                    value = 'email'
+                    value = {formFields.email}
                 />
 
                 <FormInput
@@ -79,7 +82,7 @@ const SignUpForm = () =>{
                     required
                     onChange = {handleChange}
                     name = 'password'
-                    value = 'password'
+                    value = {formFields.password}
                 />
 
                 <FormInput
@@ -87,11 +90,12 @@ const SignUpForm = () =>{
                     type = 'password'
                     required
                     onChange = {handleChange}
-                    name = 'password'
-                    value = 'password'
+                    name = 'confirmPassword'
+                    value = {formFields.confirmPassword}
                 />
                 
-                <button type="submit">SignUp</button>
+                <Button buttonType='google' type="submit">SignUp</Button>
+                <Button buttonType='inverted' type="submit">SignIn</Button>
             </form>
         </div>
 
