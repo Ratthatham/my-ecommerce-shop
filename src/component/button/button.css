@@ -1,6 +1,6 @@
 .button-container {
     min-width: 165px;
-    height: 50px;
+    height: 40px;
     letter-spacing: 0.5px;
     /* line-height: 50px; */
     padding: 0 35px 0 35px;
@@ -23,23 +23,27 @@
 .button-container.google-sign-in {
     background-color: #4285f4;
     color: white;
+    border-radius: 30px;
 }
 
 .button-container.google-sign-in:hover {
-    background-color: #4285f4;
+    background-color: #73a3f2;
     border: none;
+    border-radius: 30px;
 }
 
 .button-container.inverted{
     background-color: black;
     color: white;
     border: 1px solid black;
+    border-radius: 30px;
 }
 
 .button-container.inverted:hover{
     background-color: white;
     color: black;
     border: none;
+    border-radius: 30px;
     
 }
 

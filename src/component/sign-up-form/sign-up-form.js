@@ -1,8 +1,9 @@
 import React from "react"
 import { useState } from "react";
-import { createAuthUserWithEmailAndPassword} from "../../../firebase/firebase";
-import FormInput from "../../formInput/forminput";
-import Button from "../../button/button";
+import { createAuthUserWithEmailAndPassword} from "../../firebase/firebase";
+import FormInput from "../formInput/forminput";
+import Button from "../button/button";
+import './sign-up-form.css'
 
 
 const defaultFormFields = {
@@ -94,8 +95,8 @@ const SignUpForm = () =>{
                     value = {formFields.confirmPassword}
                 />
                 
-                <Button buttonType='google' type="submit">SignUp</Button>
-                <Button buttonType='inverted' type="submit">SignIn</Button>
+                <Button buttonType='google' type="submit">Sign Up</Button>
+                
             </form>
         </div>
 
