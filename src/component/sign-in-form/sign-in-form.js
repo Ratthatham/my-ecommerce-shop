@@ -1,5 +1,5 @@
 import React from "react"
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FormInput from "../formInput/forminput";
 import Button from "../button/button";
 import { 
@@ -7,6 +7,7 @@ import {
     createUserDataFromAuth,
     signInAuthUserWithEmailAndPassword
 } from "../../firebase/firebase";
+import { UserContext } from "../../context/context";
 import './sign-in-form.css'
 
 const defaultFormFields = {
@@ -22,13 +23,15 @@ const SignInForm = () =>{
     const resetFormField = () => {
         setFormFields(defaultFormFields);
     }
-    
+    const {currentUser, setCurrentUser} = useContext(UserContext);
     const handleSumbmit = async(event) => {
         event.preventDefault();
 
         try {
             const response = await signInAuthUserWithEmailAndPassword(formFields.email, formFields.password)
-            console.log(response);
+            setCurrentUser(response.user)
+            console.log(currentUser);
+            createUserDataFromAuth(response.user);
             resetFormField();
            
         } catch(error){

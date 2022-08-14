@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from "react";
-import { createAuthUserWithEmailAndPassword} from "../../firebase/firebase";
+import { createAuthUserWithEmailAndPassword } from "../../firebase/firebase";
 import FormInput from "../formInput/forminput";
 import Button from "../button/button";
 import './sign-up-form.css'
@@ -17,7 +17,9 @@ const SignUpForm = () =>{
     //ใช้ useState เข้ามาเก็บค่าจากform    
     const [formFields, setFormFields] = useState(defaultFormFields);
 
-    
+    const resetFormField = () => {
+        setFormFields(defaultFormFields);
+    }
     
     const handleSumbmit = async(event) => {
         event.preventDefault();
@@ -32,9 +34,9 @@ const SignUpForm = () =>{
                 formFields.email, 
                 formFields.password
             );
-            
+                resetFormField();
 
-            console.log(response);
+            console.log('createAuthEmailAndPassword',response);
         } catch(error){
             if (error.code === 'auth/email-already-in-use') {
                 alert('Cannot create user, email already in use')
