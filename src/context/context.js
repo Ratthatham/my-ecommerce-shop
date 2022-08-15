@@ -1,6 +1,7 @@
 import React from "react";
 import { createContext, useState } from "react";
 
+
 //as 
 export const UserContext = createContext({
     currentUser: null,
@@ -10,6 +11,7 @@ export const UserContext = createContext({
 export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
     const value = {currentUser, setCurrentUser}
+
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
 

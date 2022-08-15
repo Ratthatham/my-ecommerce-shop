@@ -24,6 +24,7 @@ const SignInForm = () =>{
         setFormFields(defaultFormFields);
     }
     const {currentUser, setCurrentUser} = useContext(UserContext);
+
     const handleSumbmit = async(event) => {
         event.preventDefault();
 
@@ -54,6 +55,7 @@ const SignInForm = () =>{
 
     const logGoogleUser = async () => {
         const response = await signInWithGooglePopup();
+        setCurrentUser(response.user)
         await createUserDataFromAuth(response.user)
     }
 

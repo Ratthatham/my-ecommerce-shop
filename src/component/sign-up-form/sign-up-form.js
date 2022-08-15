@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from "react";
-import { createAuthUserWithEmailAndPassword } from "../../firebase/firebase";
+import { createAuthUserWithEmailAndPassword, createUserDataFromAuth } from "../../firebase/firebase";
 import FormInput from "../formInput/forminput";
 import Button from "../button/button";
 import './sign-up-form.css'
@@ -34,6 +34,7 @@ const SignUpForm = () =>{
                 formFields.email, 
                 formFields.password
             );
+                await createUserDataFromAuth(response.user);
                 resetFormField();
 
             console.log('createAuthEmailAndPassword',response);
