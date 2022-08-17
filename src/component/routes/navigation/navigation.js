@@ -3,7 +3,10 @@ import { Outlet, Link} from "react-router-dom"; //เพิ่ม Link เอา
 import { useContext } from "react";
 import { UserContext } from "../../../context/context";
 import { signOutUser } from "../../../firebase/firebase";
+import ShoppingIcon from "../../shop-icon/shop-icon";
+import ShopIconDropDown from "../../shop-icon-dropdown/shop-icon-dropdown";
 import './navigation.css'
+
 
 const NavigationBar = () => {
     const {currentUser, setCurrentUser} = useContext(UserContext);
@@ -30,8 +33,9 @@ const NavigationBar = () => {
                             <div>Sign In</div>
                         </Link>
                     }
-                    
+                    <ShoppingIcon/>
                 </div>     
+                <ShopIconDropDown/>
             </div>
             <Outlet/>
         </div>

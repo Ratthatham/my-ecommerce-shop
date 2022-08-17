@@ -1,0 +1,28 @@
+.shop-icon-dropdown-container{
+    position: absolute;
+    width: 240px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+    top: 90px;
+    right: 40px;
+    z-index: 5;
+}
+
+
+
+.dropdown-list{
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    border: 1px solid red;
+    
+
+}
+
+.shop-icon-dropdown-container Button {
+    margin: 10px;
+}

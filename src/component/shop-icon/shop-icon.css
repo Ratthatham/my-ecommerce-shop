@@ -1,0 +1,21 @@
+.shop-icon-container{
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.shop-icon{
+    width: 24px;
+    height: 24px;
+}
+
+.shop-icon-counter{
+    
+    position: absolute;
+    font-size: 13px;
+    bottom: 12px;
+}
