@@ -2,14 +2,17 @@ import React from "react";
 import { Outlet, Link} from "react-router-dom"; //เพิ่ม Link เอามาทำการเชื่อมแต่ละหน้าเว็บ
 import { useContext } from "react";
 import { UserContext } from "../../../context/context";
+import { CartsContext } from "../../../context/cartscontext";
 import { signOutUser } from "../../../firebase/firebase";
-import ShoppingIcon from "../../shop-icon/shop-icon";
-import ShopIconDropDown from "../../shop-icon-dropdown/shop-icon-dropdown";
+import CartIcon from "../../cart-icon/cart-icon";
+import ShopIconDropDown from '../../shop-icon-dropdown/shop-icon-dropdown'
+
 import './navigation.css'
 
 
 const NavigationBar = () => {
     const {currentUser, setCurrentUser} = useContext(UserContext);
+    const {isCartOpen, setIsCartOpen} = useContext(CartsContext);
 
     const sighOutHandle = async () => {
         await signOutUser();
@@ -33,9 +36,12 @@ const NavigationBar = () => {
                             <div>Sign In</div>
                         </Link>
                     }
-                    <ShoppingIcon/>
-                </div>     
-                <ShopIconDropDown/>
+                    <CartIcon/>
+                </div>
+                {
+                    isCartOpen?<ShopIconDropDown/>:''
+                }     
+                {/* {isCartOpen && <ShopIconDropDown/>} */}
             </div>
             <Outlet/>
         </div>
