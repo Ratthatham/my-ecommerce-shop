@@ -18,9 +18,6 @@
     display: flex;
     flex-direction: column;
     overflow: scroll;
-    border: 1px solid red;
-    
-
 }
 
 .shop-icon-dropdown-container Button {
