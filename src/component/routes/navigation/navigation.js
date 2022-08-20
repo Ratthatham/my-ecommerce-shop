@@ -1,40 +1,39 @@
 import React from "react";
-import { Outlet, Link} from "react-router-dom"; //เพิ่ม Link เอามาทำการเชื่อมแต่ละหน้าเว็บ
+import { Outlet} from "react-router-dom"; //เพิ่ม Link เอามาทำการเชื่อมแต่ละหน้าเว็บ
 import { useContext } from "react";
 import { UserContext } from "../../../context/context";
 import { CartsContext } from "../../../context/cartscontext";
 import { signOutUser } from "../../../firebase/firebase";
 import CartIcon from "../../cart-icon/cart-icon";
 import ShopIconDropDown from '../../shop-icon-dropdown/shop-icon-dropdown'
-
+import { useNavigate } from "react-router-dom";
 import './navigation.css'
 
 
 const NavigationBar = () => {
     const {currentUser, setCurrentUser} = useContext(UserContext);
-    const {isCartOpen, setIsCartOpen} = useContext(CartsContext);
+    const {isCartOpen} = useContext(CartsContext);
 
-    const sighOutHandle = async () => {
+    const signOutHandle = async () => {
         await signOutUser();
         setCurrentUser(null);
     }
 
+    const navigate = useNavigate(); //useNavigate 
+    const goToHomePage = () => navigate('/');
+    const goToShopPage = () => navigate('/shop');
+    const goToSignInPage = () => navigate('/auth');
+
     return (
         <div>
             <div className= "navigation">
-                <Link className = 'logo-container' to= '/'>
-                    <div>Logo</div>
-                </Link>
+                <div className="logo-container" onClick={goToHomePage}>Logo</div>
                 <div className = 'nav-links-container'>
-                    <Link className = 'nav-link' to='/shop' >
-                        <div>Shop</div>
-                    </Link>
+                    <div className = 'nav-link' onClick={goToShopPage}>Shop</div>
                     {
-                        currentUser? <span className="nav-link" onClick={sighOutHandle}>Sign out</span>
+                        currentUser? <span className="nav-link" onClick={signOutHandle}>Sign out</span>
                         :
-                        <Link className="nav-link" to='/auth'>
-                            <div>Sign In</div>
-                        </Link>
+                            <div className="nav-link" onClick={goToSignInPage}>Sign In</div>
                     }
                     <CartIcon/>
                 </div>
