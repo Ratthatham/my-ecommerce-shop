@@ -1,0 +1,22 @@
+ .checkoutitems-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+    align-items: center;
+}
+
+.checkoutitems-image{
+    margin: 20px;
+    width: 70%;
+}
+
+.checkoutitems-decrease, .checkoutitems-increase {
+    margin: 10px;
+    cursor: pointer;
+} 
+
+.checkoutitems-remove{
+    cursor: pointer;
+    font-size:larger;
+}
+
