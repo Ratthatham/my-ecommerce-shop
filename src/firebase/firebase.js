@@ -17,7 +17,11 @@ import {
   getFirestore,
   setDoc,
   getDoc,
-  doc
+  doc,
+  collection,
+  writeBatch,
+  query,
+  getDocs
 } from 'firebase/firestore'
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -43,18 +47,40 @@ provider.setCustomParameters({
     'login_hint': 'user@example.com'
   });
 export const auth = getAuth();
+
+// Import Data to Firebase
+export const addCollectionAndDocument = async (collectionKey, objectToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+  await batch.commit();
+}
+
+//Collect Data from Firebase
+export const getCategoriesAndDocument = async () => {
+  const collectionRef = collection(db, 'categories');
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const {title, items} = docSnapshot.data();
+    acc[title.toLowerCase()] = items
+    return acc;
+  },{})
+  return categoryMap;
+
+}
+
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const createUserDataFromAuth =  async(userAuth) => {
   if(!userAuth) return;
-  // const res = await userAuth.uid;
-  // console.log(res);
   const userDocRef = await doc(db, 'users', userAuth.uid);
   const docSnapshort = await getDoc(userDocRef)
-
-  // console.log(userDocRef);
-  // console.log(docSnapshort);
-  // console.log(docSnapshort.exists());
 
   if(!docSnapshort.exists()){
     const createdAt = new Date();
