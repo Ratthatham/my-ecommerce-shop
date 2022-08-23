@@ -8,18 +8,19 @@ import { useParams } from "react-router-dom";
 const Category = () => {
     const {category} = useParams();
     const {categoriesMap} = useContext(CategoriesContext)
-    const [products, setProducts] = useState([categoriesMap[category]]);
+    const [products, setProducts] = useState(categoriesMap[category]);
+    console.log(category);
+    
 
     useEffect(()=>{
-        setProducts(categoriesMap(category));
-    },(categoriesMap, category))
+        setProducts(categoriesMap[category]);
+    },[category, categoriesMap ])
+    
 
     return(
         <div className="category-container">
             {products &&
-                products.map((product)=>
-                    <ProductCard key={product.id} product={product}/>
-                )
+                products.map((product)=><ProductCard key={product.id} product={product}/>)
             }
         </div>
     )
